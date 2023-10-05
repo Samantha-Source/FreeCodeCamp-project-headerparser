@@ -21,10 +21,9 @@ app.get('/', function (req, res) {
 
 // your first API endpoint...
 app.get('/api/whoami', function (req, res) {
-  console.log(req.headers);
-  const { host } = req.headers;
-  const userLanguage = req.headers['accept-language'];
-  const userSoftware = req.headers['user-agent'];
+  const { host, ['accept-language']: userLanguage, ['user-agent']: userSoftware } = req.headers;
+  // const userLanguage = req.headers['accept-language'];
+  // const userSoftware = req.headers['user-agent'];
 
   res.json({ ipaddress: host, language: userLanguage, software: userSoftware });
 });
